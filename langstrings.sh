@@ -1,8 +1,8 @@
 #!/bin/bash
 
-path=../roxhill-docker/src/roxhill-app/src/lang/root/
-filename=core.js
-input=$path$filename
+sourcecode=../roxhill-docker/src/roxhill-app/src
+langfile=/lang/root/core.js
+input=$sourcecode$langfile
 
 while read line;
 do
