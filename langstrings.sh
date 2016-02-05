@@ -9,7 +9,7 @@ while read line;
 do
   key=$(echo $line | cut -d':' -f1)
   if [[ $key =~ ^[A-Za-z_]+$ ]]; then
-    # git grep
+    # grep to see if translation is being used
     is_key_used=$(git grep core.$key .)
     # if empty delete line with sed
     if [ -z "$is_key_used" ]; then
