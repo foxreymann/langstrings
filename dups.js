@@ -457,7 +457,6 @@ var langstrings = {
 };
 var keys = Object.keys(langstrings);
 
-// loop one by one
 keys.forEach(function(key) {
   var val = langstrings[key];
   var dups = {};
@@ -467,7 +466,7 @@ keys.forEach(function(key) {
       dups[innerKey] = innerVal;
     }
   });
-  console.log(dups);
+  if(Object.keys(dups).length > 1) {
+    console.log(dups);
+  }
 });
-    // store duplicates
-    // display duplicates
