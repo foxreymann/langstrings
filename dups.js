@@ -26,20 +26,12 @@ keys.forEach(function(key) {
 });
 
 function cleanup(result, dups) {
-  var dir = '../roxhill-docker/src/roxhill-app/src/scripts',
-      options = {
-        cwd: dir
-      };
-
   console.log(result.newKey);
 
-  Object.keys(dups).every(function(key) {
-console.log(key);
+  Object.keys(dups).forEach(function(key) {
     // replace old keys in source code
     cmd = 'git grep -l "core.' + key + '\'" | xargs sed -i "s/core.' + key + '\'/core.' + result.newKey + '\'/g"';
-    //  git grep -l "core.favourites'" | xargs sed -i "s/core.favourites'/core.favs'/g"
-console.log(cmd);
-    exec(cmd, options);
+    console.log(cmd);
   });
   // remove all from langstings file
   // remove last line from the file
