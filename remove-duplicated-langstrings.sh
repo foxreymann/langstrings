@@ -7,11 +7,11 @@ cd $sourcecode
 while read line;
 do
   key=$(echo $line | cut -d':' -f1)
-  value=$(echo $line | cut -d':' -f2 | sed "s/',/\"/")
+  value=$(echo $line | cut -d':' -f2 | sed "s/',/\"/" | sed "s/'/\"/")
 echo $value
-  # grep for this value and see how many lines are outputed
+  # grep for translation value and see how many lines are outputed
   if [[ $key =~ ^[A-Za-z_]+$ ]]; then
-    echo "grep -r \"$value\" $langfile"
+    echo "grep -r $value $langfile"
     is_duplicated=$(grep -r "$value" $langfile)
     echo $is_duplicated
   fi
