@@ -1,5 +1,8 @@
 var langstrings = require('./langstrings.js');
+var prompt = require('prompt');
+
 var keys = Object.keys(langstrings);
+prompt.start();
 
 keys.forEach(function(key) {
   var val = langstrings[key];
@@ -12,9 +15,13 @@ keys.forEach(function(key) {
   });
   if(Object.keys(dups).length > 1) {
     // display
-    console.log(dups);
     // prompt to type in new name
     // replace in the sourcecode
     // remove from langstrings
+    console.log(dups);
+    prompt.get('newKey', function (err, result) {
+      console.log('  new key: ' + result.newKey);
+    });
+    keys = [];
   }
 });
