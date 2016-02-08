@@ -13,7 +13,6 @@ do
     # if empty delete line with sed
     if [ -z "$is_key_used" ]; then
       echo "sed -i '/ $key:/d' $langfile"
-      sed -i '/ $key:/d' $langfile
     fi
   fi
 done < $langfile
