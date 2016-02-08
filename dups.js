@@ -19,9 +19,30 @@ keys.forEach(function(key) {
     console.log(dups);
     // prompt to type in new name
     prompt.get('newKey', function (err, result) {
-      console.log(result.newKey);
-      // run all commands
+      cleanup(result, dups);
     });
     keys = [];
   }
 });
+
+function cleanup(result, dups) {
+  var dir = '../roxhill-docker/src/roxhill-app/src/scripts',
+      options = {
+        cwd: dir
+      };
+
+  console.log(result.newKey);
+
+  Object.keys(dups).forEach(function(key) {
+console.log(key);
+    // replace old keys in source code
+    cmd = 'git grep -l "core.' + key + '\'" | xargs sed -i "s/core.' + key + '\'/core.' + result.newKey + '\'/g"';
+    //  git grep -l "core.favourites'" | xargs sed -i "s/core.favourites'/core.favs'/g"
+console.log(cmd);
+    exec(cmd, options);
+  });
+  // remove all from langstings file
+  // remove last line from the file
+  // append translation
+  // append closing
+}

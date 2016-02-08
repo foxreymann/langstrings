@@ -422,7 +422,6 @@ module.exports = {
     article_tile_l2_companies: 'Companies',
     article_tile_l2_company_tags: 'Sectors',
     article_tile_l2_story_tags: 'Topics',
-    article_tile_l2_feeds: 'Streams',
     article_tile_l2_metadata: 'Section',
     article_tile_l2_none: 'None',
     article_tile_l2_excerpt: 'Excerpt',
