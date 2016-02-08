@@ -33,7 +33,7 @@ function cleanup(result, dups) {
 
   console.log(result.newKey);
 
-  Object.keys(dups).forEach(function(key) {
+  Object.keys(dups).every(function(key) {
 console.log(key);
     // replace old keys in source code
     cmd = 'git grep -l "core.' + key + '\'" | xargs sed -i "s/core.' + key + '\'/core.' + result.newKey + '\'/g"';
