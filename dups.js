@@ -20,7 +20,7 @@ keys.forEach(function(key) {
     // remove from langstrings
     console.log(dups);
     prompt.get('newKey', function (err, result) {
-      console.log('  new key: ' + result.newKey);
+      console.log(result.newKey);
     });
     keys = [];
   }
