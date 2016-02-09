@@ -1,5 +1,7 @@
 var langstrings = require('./langstrings.js');
 var prompt = require('prompt');
+var fs = require("fs");
+var os = require("os");
 const exec = require('child_process').exec;
 
 var keys = Object.keys(langstrings);
@@ -27,17 +29,28 @@ keys.forEach(function(key) {
 
 function cleanup(result, dups) {
   var langstringsPath = 'src/lang/root/core.js';
+  var scriptPath = '../roxhill-docker/src/roxhill-app/dups.sh';
+  var script = '#!/bin/bash' + os.EOL;
   console.log(result.newKey);
 
   Object.keys(dups).forEach(function(key) {
     // replace old keys in source code
     cmd = 'git grep -l "core.' + key + '\'" | xargs sed -i "s/core.' + key + '\'/core.' + result.newKey + '\'/g"';
     console.log(cmd);
+    script += cmd + os.EOL;
     // remove all from langstings file
     cmd = 'sed -i "/ ' + key + ':/d" ' + langstringsPath;
     console.log(cmd);
+    script += cmd + os.EOL;
   });
   // append correct translation
   cmd = 'sed -i "3i\\    ' + result.newKey + ': \'' + dups[Object.keys(dups)[0]] + '\'," ' + langstringsPath;
   console.log(cmd);
+  script += cmd + os.EOL;
+  cmd = 'rm -- "$0"';
+  script += cmd + os.EOL;
+
+  fs.writeFile(scriptPath, script, function(error) {
+    console.log(error);
+  });
 }
