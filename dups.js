@@ -1,8 +1,10 @@
-var langstrings = require('./langstrings.js');
 var prompt = require('prompt');
 var fs = require("fs");
 var os = require("os");
-const exec = require('child_process').exec;
+var requirejs = require('requirejs');
+var appPath = '../roxhill-docker/src/roxhill-app';
+var langstringsPath = 'src/lang/root/core.js';
+var langstrings = requirejs(appPath + '/' + langstringsPath);
 
 var keys = Object.keys(langstrings);
 prompt.start();
@@ -28,7 +30,6 @@ keys.forEach(function(key) {
 });
 
 function cleanup(result, dups) {
-  var langstringsPath = 'src/lang/root/core.js';
   var scriptPath = '../roxhill-docker/src/roxhill-app/dups.sh';
   var script = '#!/bin/bash' + os.EOL;
   console.log(result.newKey);

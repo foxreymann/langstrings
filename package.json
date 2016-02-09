@@ -4,7 +4,8 @@
   "description": "script removed unsued translations from JS app to save cash on i18n of the app",
   "main": "langstrings.js",
   "dependencies": {
-    "prompt": "^0.3.0"
+    "prompt": "^0.3.0",
+    "requirejs": "^2.1.22"
   },
   "devDependencies": {},
   "scripts": {
