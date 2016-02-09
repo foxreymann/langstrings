@@ -26,15 +26,18 @@ keys.forEach(function(key) {
 });
 
 function cleanup(result, dups) {
+  var langstringsPath = 'src/lang/root/core.js';
   console.log(result.newKey);
 
   Object.keys(dups).forEach(function(key) {
     // replace old keys in source code
     cmd = 'git grep -l "core.' + key + '\'" | xargs sed -i "s/core.' + key + '\'/core.' + result.newKey + '\'/g"';
     console.log(cmd);
+    // remove all from langstings file
+    cmd = 'sed -i "/ ' + key + ':/d" ' + langstringsPath;
+    console.log(cmd);
   });
-  // remove all from langstings file
-  // remove last line from the file
-  // append translation
-  // append closing
+  // append correct translation
+  cmd = 'sed -i "3i\\    ' + result.newKey + ': \'' + dups[Object.keys(dups)[0]] + '\'," ' + langstringsPath;
+  console.log(cmd);
 }
